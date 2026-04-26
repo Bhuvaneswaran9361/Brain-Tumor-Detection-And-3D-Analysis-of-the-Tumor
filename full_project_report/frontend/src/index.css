@@ -1,0 +1,194 @@
+/* NeuroScan AI — Design System
+   Aesthetic: Deep-space surgical console
+   Palette: Void black · Electric cyan · Biomarker red · Amber warning
+   Type: Orbitron (display) · JetBrains Mono (data) · Inter (body)
+*/
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-void:      #020608;
+  --bg-deep:      #050c18;
+  --bg-card:      #091525;
+  --bg-glass:     rgba(9, 21, 37, 0.75);
+  --bg-elevated:  #0d1e34;
+  --bg-hover:     rgba(0, 229, 255, 0.04);
+
+  /* ── Brand colours ── */
+  --cyan:         #00e5ff;
+  --cyan-dim:     #006d82;
+  --cyan-glow:    rgba(0, 229, 255, 0.18);
+  --cyan-faint:   rgba(0, 229, 255, 0.06);
+
+  --amber:        #ffb300;
+  --amber-dim:    rgba(255, 179, 0, 0.15);
+
+  --red-tumor:    #ff3333;
+  --red-glow:     rgba(255, 51, 51, 0.2);
+  --red-faint:    rgba(255, 51, 51, 0.06);
+
+  --green-ok:     #00ff88;
+  --green-faint:  rgba(0, 255, 136, 0.08);
+
+  --purple:       #a855f7;
+
+  /* ── Text ── */
+  --text-primary:   #dff0ff;
+  --text-secondary: #7aadce;
+  --text-muted:     #2d4d6a;
+  --text-data:      #00e5ff;
+
+  /* ── Borders ── */
+  --border:         rgba(0, 229, 255, 0.1);
+  --border-bright:  rgba(0, 229, 255, 0.28);
+  --border-card:    rgba(0, 229, 255, 0.14);
+
+  /* ── Radius ── */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+
+  /* ── Shadows ── */
+  --shadow-card:   0 4px 40px rgba(0,0,0,0.6), 0 0 0 1px var(--border-card);
+  --shadow-glow:   0 0 40px rgba(0,229,255,0.07);
+  --shadow-panel:  0 8px 60px rgba(0,0,0,0.7);
+
+  /* ── Typography ── */
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Ambient background layers ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 15%, rgba(0,100,200,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 75%, rgba(0,229,255,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(10,30,60,0.8)  0%, transparent 100%);
+  pointer-events: none;
+}
+
+#root { position: relative; z-index: 1; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--cyan-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+/* ── Glass card ── */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid var(--border-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Status badge ── */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.05em; padding: 4px 11px;
+  border-radius: 100px; border: 1px solid;
+}
+.badge-ok      { color: var(--green-ok);  border-color: rgba(0,255,136,0.35);  background: var(--green-faint); }
+.badge-tumor   { color: var(--red-tumor); border-color: rgba(255,51,51,0.35);   background: var(--red-faint); }
+.badge-warning { color: var(--amber);     border-color: rgba(255,179,0,0.35);   background: var(--amber-dim); }
+.badge-info    { color: var(--cyan);      border-color: var(--border-bright);   background: var(--cyan-faint); }
+
+/* ── Button ── */
+.btn {
+  font-family: var(--font-display); font-size: 0.72rem;
+  font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  border: none; cursor: pointer; border-radius: var(--r-sm);
+  padding: 0.65rem 1.5rem; transition: all 0.2s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: #fff; box-shadow: 0 3px 18px rgba(0,180,216,0.28);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0090cc, var(--cyan));
+  box-shadow: 0 5px 28px rgba(0,229,255,0.45);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--cyan); border: 1px solid var(--border-bright);
+}
+.btn-outline:hover {
+  background: var(--cyan-faint);
+  box-shadow: 0 0 18px var(--cyan-glow);
+}
+
+/* ── Section label ── */
+.section-label {
+  font-family: var(--font-display); font-size: 0.68rem;
+  color: var(--text-secondary); letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.section-label span { color: var(--cyan); }
+
+/* ── Data value ── */
+.data-value {
+  font-family: var(--font-mono); color: var(--text-data);
+}
+
+/* ── Glow utilities ── */
+.glow-cyan  { text-shadow: 0 0 18px rgba(0,229,255,0.55); }
+.glow-red   { text-shadow: 0 0 18px rgba(255,51,51,0.55); }
+.glow-amber { text-shadow: 0 0 18px rgba(255,179,0,0.55); }
+
+/* ── Keyframes ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px currentColor; }
+  50%       { opacity: 0.6; box-shadow: 0 0 12px currentColor; }
+}
+@keyframes scan-h {
+  0%   { transform: translateY(-4px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
