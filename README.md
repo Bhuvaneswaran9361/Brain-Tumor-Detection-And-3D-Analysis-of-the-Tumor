@@ -1,4 +1,4 @@
-# NeuroScan AI – Brain Tumor Detection & Analysis System
+# Brain Tumor Detection & Analysis System
 
 ## Overview
 
